@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  web:
+    container_name: test.app
+    build: ./app
+    command: gunicorn app.wsgi --bind 0.0.0.0:8000
+    ports:
+      - 8000:8000
+    networks:
+      - test-net
+    env_file:
+      - ./.env
+
+networks:
+  test-net:
